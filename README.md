@@ -113,4 +113,4 @@ Contains executable of the interpreter. Currently containing executable for linu
 
 #### Usage
 
-keya-linux-v0.1 <filename.keya>
+`keya-linux-v0.1 <filename.keya>`
