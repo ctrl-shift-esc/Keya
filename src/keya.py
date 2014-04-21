@@ -3,7 +3,7 @@ contents = ""
 f= open(sys.argv[1])
 contents=f.read()
 f.close()
-arr=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+arr=[[0 for x in range(20)] for y in range(20)]
 ctr=0
 for c in contents:
 	if c=='8':

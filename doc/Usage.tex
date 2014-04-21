@@ -1,0 +1,88 @@
+\documentclass[english,12pt]{article}
+ \usepackage[margin=2cm]{geometry}
+\usepackage{tikz}
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{array, xcolor}
+\usepackage{listings}
+ \definecolor{lightgray}{gray}{0.8}
+\newcolumntype{L}{>{\raggedleft}p{0.1\textwidth}}
+\newcolumntype{R}{p{0.9\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\lstset{basicstyle=\ttfamily}
+
+\setcounter{secnumdepth}{2}
+\begin{document}
+ 
+\title{A guide to Keya}
+\author{Krishna Sudhakar}
+\date{}
+\maketitle
+ 
+\clearpage
+
+\section{Memory Layout}
+The operations of Keya is done on a grid layout. Standard Keya memory layout is the size of 20 by 20 bytes. This can be changed in the source code of the interpreter. The initial configuration is that the memory is initialized to 0, and the pointer points to the first cell of the first row, of the memory grid.
+
+\section{Commands}
+There are different kinds of commands in Keya. They are:
+\begin{itemize}
+\item Movement of the Pointer
+\item Input/Output
+\item Data Manipulation
+\item Loops
+\end{itemize}
+
+\subsection{Movement of pointer}
+
+\begin{tabular}{L!{\VRule}R}
+\lstinline$8$ &Move up by one row\\
+\lstinline$2$&Move down by one row\\
+\lstinline$4$&Move left by one cell\\
+\lstinline$6$&Move right by one cell\\
+\lstinline$r$&Reset to initial configuration\\
+\end{tabular}
+
+\subsection{Input/Output}
+
+\begin{tabular}{L!{\VRule}R}
+\lstinline$.$&Output the data at the Pointer\\
+\lstinline$,$&Input data at Pointer\\
+\end{tabular}
+\subsection{Data Manipulation}
+
+\begin{tabular}{L!{\VRule}R}
+\lstinline$+$&Increment byte at the Pointer\\
+\lstinline$-$&Decrement byte at the Pointer\\
+\textgreater&Copy data to next cell on the right of the Pointer\\
+\textless&Copy data to next cell on the left of the Pointer\\
+$\wedge$&Copy data to next cell above the Pointer\\
+\_&Copy data to next cell below the Pointer\\
+\end{tabular}
+
+\subsection{Loops}
+\begin{tabular}{L!{\VRule}R}
+\lstinline$[$&If the byte at the Pointer is zero, then instead of moving the instruction pointer forward to next command, jump it forward to the command after the next corresponding \lstinline$]$ command.\\
+\lstinline$]$&if the byte at the pointer is nonzero, then instead of moving the instruction pointer forward to the next command, jump it back to the command after the previous corresponding \lstinline$[$ command.\\
+\end{tabular}
+ 
+\section{Directory Structure}
+
+\subsection{src}
+\subsubsection{keya.c}
+Source code of the interpreter in C.
+\subsubsection{keya.py}
+Source code of the interpreter in Python. [Not fully developed yet]
+
+
+\subsection{bin}
+
+Executable interpreter for Linux. Usage:
+
+\lstinline$ keya-linux-v1b.ex <filename>.keya$
+
+\subsection{Example}
+\subsubsection{Hello World!.keya}
+This is an example program which outputs ``Hello World!''
+
+\end{document}

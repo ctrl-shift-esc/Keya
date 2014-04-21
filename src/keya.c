@@ -25,58 +25,73 @@ int main(int argc, char **argv)
 
 	while((c = fgetc(fp)) != EOF)
 	{
-		if (c=='8')p=p-TABLE;
-		if (c=='2')p=p+TABLE;
-		if (c=='4')--p;
-		if (c=='6')++p;
-		if (c=='r'){p=a;a[TABLE*TABLE]=0;}
-		if (c=='+'){++*p;}
-		if (c=='-')--*p;
-		if (c=='.'){putchar(*p);}
-		if (c==',')*p = getchar();
-		if (c=='[')
+		switch (c)
 		{
-			count++;
-			pos[count] = ftell(fp);
-			if (*p == 0)
-			{
-				while(count !=0)
-				{
-					temp = fgetc(fp);
-					if (temp == '[')
-						count++;
-					if (temp == ']')
+			case '8':
+					p=p-TABLE;
+					break;
+			case '2':
+					p=p+TABLE;
+					break;
+			case '4':
+					--p;
+					break;
+			case '6': 
+					++p;
+					break;
+			case 'r':
+					p=a;
+					a[TABLE*TABLE]={0};
+					break;
+			case '+':
+					++*p;
+					break;
+			case '-':
+					--*p;
+					break;
+			case '.':
+					putchar(*p);
+					break;
+			case ',':
+					*p = getchar();
+					break;
+			case '[':
+					count++;
+					pos[count] = ftell(fp);
+					if (*p == 0)
+					{
+						while(count !=0)
+						{
+							temp = fgetc(fp);
+							if (temp == '[')
+								count++;
+							if (temp == ']')
+								count--;
+						}
+					}
+					break;
+			case ']':
+					if(*p !=0)
+					{
+						fseek(fp,pos[count],SEEK_SET);
+					}
+					else
+					{
 						count--;
-				}
-			}
-
-		}
-		if (c==']')
-		{
-			if(*p !=0)
-			{
-				fseek(fp,pos[count],SEEK_SET);
-			}
-			else
-			{
-				count--;
-			}
-		}
-		if (c=='>')
-		{
-			*(p+1) = *p;
-		}
-		if (c=='<')
-		{
-			*(p-1) = *p;
-		}
-		if (c=='^')
-		{
-			*(p-TABLE) = *p;
-		}
-		if (c=='_')
-		{
-			*(p+TABLE) = *p;
+					}
+					break;
+			case '>':
+					*(p+1) = *p;
+					break;
+			case '<':
+					*(p-1) = *p;
+					break;
+			case '^':
+					*(p-TABLE) = *p;
+					break;
+			case '_':
+					*(p+TABLE) = *p;
+					break;
 		}
 	}
 	fclose(fp);
