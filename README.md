@@ -9,6 +9,9 @@ Currently not pursuing development of interpreter in python.
 
 Change Log
 ----
+v2.0:
+* Introducing comments. 
+* Fixed reset bug from v1.1
 
 v1.1:
 * Changed interpreter code to switch case statements

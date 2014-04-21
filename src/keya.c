@@ -19,7 +19,7 @@ int count = 0;
 
 int main(int argc, char **argv)
 {
-	int c, temp;
+	int c, temp,i;
 	FILE *fp;
 	fp = fopen(argv[1],"r");
 
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 					break;
 			case 'r':
 					p=a;
-					a[TABLE*TABLE]={0};
+					for(i=0;i<(TABLE*TABLE);i++)a[i]=0;
 					break;
 			case '+':
 					++*p;
@@ -92,6 +92,8 @@ int main(int argc, char **argv)
 			case '_':
 					*(p+TABLE) = *p;
 					break;
+			case '!':
+					while(c!='\n')c=fgetc(fp);
 		}
 	}
 	fclose(fp);
